@@ -1,0 +1,693 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Admin Panel — Probhat</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- =========================
+       LOGIN SCREEN
+  ========================== -->
+
+  <div id="loginScreen" class="login-screen">
+
+    <div class="login-glow glow-one"></div>
+    <div class="login-glow glow-two"></div>
+
+    <div class="login-card">
+
+      <div class="admin-logo">
+        <span>PROBHAT</span><b>.</b>
+      </div>
+
+      <div class="login-icon">
+        🔐
+      </div>
+
+      <h1>Welcome Back</h1>
+
+      <p class="login-subtitle">
+        Sign in to manage your portfolio.
+      </p>
+
+      <form id="loginForm">
+
+        <div class="input-group">
+          <label for="email">Email</label>
+
+          <input
+            type="email"
+            id="email"
+            placeholder="admin@example.com"
+            required
+          >
+        </div>
+
+        <div class="input-group">
+          <label for="password">Password</label>
+
+          <input
+            type="password"
+            id="password"
+            placeholder="Enter your password"
+            required
+          >
+        </div>
+
+        <button type="submit" class="primary-btn" id="loginBtn">
+          <span>Sign In</span>
+          <span>→</span>
+        </button>
+
+        <p id="loginError" class="error-message"></p>
+
+      </form>
+
+      <a href="../index.html" class="back-link">
+        ← Back to Portfolio
+      </a>
+
+    </div>
+  </div>
+
+
+  <!-- =========================
+       ADMIN DASHBOARD
+  ========================== -->
+
+  <div id="dashboard" class="dashboard hidden">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+      <div class="sidebar-logo">
+        PROBHAT<span>.</span>
+      </div>
+
+      <div class="admin-label">
+        ADMIN PANEL
+      </div>
+
+      <nav class="sidebar-nav">
+
+        <button class="nav-item active" data-section="dashboardSection">
+          <span class="nav-icon">⌂</span>
+          <span>Dashboard</span>
+        </button>
+
+        <button class="nav-item" data-section="profileSection">
+          <span class="nav-icon">◉</span>
+          <span>Profile</span>
+        </button>
+
+        <button class="nav-item" data-section="projectsSection">
+          <span class="nav-icon">▣</span>
+          <span>Projects</span>
+        </button>
+
+        <button class="nav-item" data-section="contactSection">
+          <span class="nav-icon">✉</span>
+          <span>Contact</span>
+        </button>
+
+      </nav>
+
+      <button id="logoutBtn" class="logout-btn">
+        <span>↪</span>
+        Logout
+      </button>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-content">
+
+      <!-- MOBILE TOPBAR -->
+
+      <header class="mobile-topbar">
+
+        <div class="mobile-logo">
+          PROBHAT<span>.</span>
+        </div>
+
+        <button id="mobileLogout" class="mobile-logout">
+          Logout
+        </button>
+
+      </header>
+
+
+      <!-- =========================
+           DASHBOARD SECTION
+      ========================== -->
+
+      <section id="dashboardSection" class="admin-section active-section">
+
+        <div class="section-header">
+
+          <div>
+            <span class="eyebrow">CONTROL CENTER</span>
+
+            <h1>Dashboard</h1>
+
+            <p>
+              Manage your portfolio from one place.
+            </p>
+          </div>
+
+        </div>
+
+
+        <div class="stats-grid">
+
+          <div class="stat-card">
+
+            <div class="stat-icon">◉</div>
+
+            <div>
+              <span class="stat-label">PROFILE</span>
+              <strong id="profileStatus">Not Set</strong>
+            </div>
+
+          </div>
+
+
+          <div class="stat-card">
+
+            <div class="stat-icon">▣</div>
+
+            <div>
+              <span class="stat-label">PROJECTS</span>
+              <strong id="projectCount">0</strong>
+            </div>
+
+          </div>
+
+
+          <div class="stat-card">
+
+            <div class="stat-icon">✉</div>
+
+            <div>
+              <span class="stat-label">CONTACT</span>
+              <strong id="contactStatus">Not Set</strong>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="welcome-card">
+
+          <div>
+
+            <span class="eyebrow">PROBHAT.DEV</span>
+
+            <h2>
+              Your portfolio.<br>
+              Your control.
+            </h2>
+
+            <p>
+              Use the menu to update your profile,
+              projects and contact information.
+            </p>
+
+          </div>
+
+          <div class="welcome-symbol">
+            ✦
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =========================
+           PROFILE SECTION
+      ========================== -->
+
+      <section id="profileSection" class="admin-section">
+
+        <div class="section-header">
+
+          <div>
+            <span class="eyebrow">PERSONAL INFORMATION</span>
+
+            <h1>Profile</h1>
+
+            <p>
+              Update the information displayed on your portfolio.
+            </p>
+          </div>
+
+        </div>
+
+
+        <div class="form-card">
+
+          <form id="profileForm">
+
+            <div class="form-grid">
+
+              <div class="input-group">
+
+                <label for="profileName">
+                  Name
+                </label>
+
+                <input
+                  type="text"
+                  id="profileName"
+                  placeholder="Probhat"
+                >
+
+              </div>
+
+
+              <div class="input-group">
+
+                <label for="profileTitle">
+                  Professional Title
+                </label>
+
+                <input
+                  type="text"
+                  id="profileTitle"
+                  placeholder="Freelance Web Developer"
+                >
+
+              </div>
+
+            </div>
+
+
+            <div class="input-group">
+
+              <label for="profileBio">
+                Short Bio
+              </label>
+
+              <textarea
+                id="profileBio"
+                rows="5"
+                placeholder="Tell potential clients about yourself..."
+              ></textarea>
+
+            </div>
+
+
+            <div class="input-group">
+
+              <label for="profileImage">
+                Profile Image URL
+              </label>
+
+              <input
+                type="url"
+                id="profileImage"
+                placeholder="https://example.com/profile.jpg"
+              >
+
+              <small>
+                Image uploading will be added later.
+              </small>
+
+            </div>
+
+
+            <button type="submit" class="primary-btn">
+
+              <span>Save Profile</span>
+              <span>→</span>
+
+            </button>
+
+            <p id="profileMessage" class="success-message"></p>
+
+          </form>
+
+        </div>
+
+      </section>
+
+
+      <!-- =========================
+           PROJECTS SECTION
+      ========================== -->
+
+      <section id="projectsSection" class="admin-section">
+
+        <div class="section-header">
+
+          <div>
+            <span class="eyebrow">YOUR WORK</span>
+
+            <h1>Projects</h1>
+
+            <p>
+              Add and manage your completed projects.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="form-card">
+
+          <form id="projectForm">
+
+            <input type="hidden" id="projectId">
+
+            <div class="form-grid">
+
+              <div class="input-group">
+
+                <label for="projectName">
+                  Project Name
+                </label>
+
+                <input
+                  type="text"
+                  id="projectName"
+                  placeholder="Clean Beauty"
+                  required
+                >
+
+              </div>
+
+
+              <div class="input-group">
+
+                <label for="projectCategory">
+                  Category
+                </label>
+
+                <input
+                  type="text"
+                  id="projectCategory"
+                  placeholder="Business Website"
+                  required
+                >
+
+              </div>
+
+            </div>
+
+
+            <div class="input-group">
+
+              <label for="projectDescription">
+                Description
+              </label>
+
+              <textarea
+                id="projectDescription"
+                rows="4"
+                placeholder="Describe the project..."
+                required
+              ></textarea>
+
+            </div>
+
+
+            <div class="form-grid">
+
+              <div class="input-group">
+
+                <label for="projectImage">
+                  Image URL
+                </label>
+
+                <input
+                  type="url"
+                  id="projectImage"
+                  placeholder="https://example.com/project.jpg"
+                >
+
+              </div>
+
+
+              <div class="input-group">
+
+                <label for="projectLink">
+                  Website URL
+                </label>
+
+                <input
+                  type="url"
+                  id="projectLink"
+                  placeholder="https://example.com"
+                >
+
+              </div>
+
+            </div>
+
+
+            <div class="button-row">
+
+              <button
+                type="submit"
+                class="primary-btn"
+                id="projectSaveBtn"
+              >
+                <span>Add Project</span>
+                <span>→</span>
+              </button>
+
+              <button
+                type="button"
+                id="cancelEditBtn"
+                class="secondary-btn hidden"
+              >
+                Cancel
+              </button>
+
+            </div>
+
+            <p id="projectMessage" class="success-message"></p>
+
+          </form>
+
+        </div>
+
+
+        <!-- PROJECT LIST -->
+
+        <div class="projects-admin-list" id="projectsList">
+
+          <div class="empty-projects">
+
+            <div class="empty-icon">
+              ▣
+            </div>
+
+            <h3>No projects yet</h3>
+
+            <p>
+              Add your first project using the form above.
+            </p>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =========================
+           CONTACT SECTION
+      ========================== -->
+
+      <section id="contactSection" class="admin-section">
+
+        <div class="section-header">
+
+          <div>
+            <span class="eyebrow">GET IN TOUCH</span>
+
+            <h1>Contact</h1>
+
+            <p>
+              Update the contact information shown on your website.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="form-card">
+
+          <form id="contactForm">
+
+
+            <div class="input-group">
+
+              <label for="contactEmail">
+                Email
+              </label>
+
+              <input
+                type="email"
+                id="contactEmail"
+                placeholder="your@email.com"
+              >
+
+            </div>
+
+
+            <div class="input-group">
+
+              <label for="contactWhatsapp">
+                WhatsApp
+              </label>
+
+              <input
+                type="text"
+                id="contactWhatsapp"
+                placeholder="+91XXXXXXXXXX"
+              >
+
+            </div>
+
+
+            <div class="input-group">
+
+              <label for="contactInstagram">
+                Instagram
+              </label>
+
+              <input
+                type="url"
+                id="contactInstagram"
+                placeholder="https://instagram.com/username"
+              >
+
+            </div>
+
+
+            <div class="input-group">
+
+              <label for="contactLinkedin">
+                LinkedIn
+              </label>
+
+              <input
+                type="url"
+                id="contactLinkedin"
+                placeholder="https://linkedin.com/in/username"
+              >
+
+            </div>
+
+
+            <button type="submit" class="primary-btn">
+
+              <span>Save Contact</span>
+              <span>→</span>
+
+            </button>
+
+
+            <p id="contactMessage" class="success-message"></p>
+
+          </form>
+
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+
+  <!-- =========================
+       FIREBASE
+  ========================== -->
+
+  <script type="module">
+
+    import {
+      initializeApp
+    } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+
+    import {
+      getAuth,
+      onAuthStateChanged,
+      signInWithEmailAndPassword,
+      signOut
+    } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+
+    import {
+      getFirestore
+    } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+
+    const firebaseConfig = {
+
+      apiKey: "AIzaSyCmREIGFZnC_byQpu8CGf5qIev_6m-BSvg",
+
+      authDomain: "probhat-7d5e9.firebaseapp.com",
+
+      projectId: "probhat-7d5e9",
+
+      storageBucket: "probhat-7d5e9.firebasestorage.app",
+
+      messagingSenderId: "369971365753",
+
+      appId: "1:369971365753:web:bd88925c9daa6fd55111a8",
+
+      measurementId: "G-2DR3PSN3NN"
+
+    };
+
+
+    const app = initializeApp(firebaseConfig);
+
+    const auth = getAuth(app);
+
+    const db = getFirestore(app);
+
+
+    /*
+      Make Firebase available to script.js
+    */
+
+    window.firebaseAuth = auth;
+    window.firebaseDB = db;
+
+    window.firebaseFunctions = {
+      signInWithEmailAndPassword,
+      signOut,
+      onAuthStateChanged
+    };
+
+  </script>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>
+```
